@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 from django.conf import settings
-from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
     path('',views.inicio , name='inicio'),
@@ -18,4 +17,4 @@ urlpatterns = [
     path('autores/editar', views.editar_autor , name='editar_autor'),
     path('autores/eliminar/<int:id>', views.eliminar_autor , name='eliminar_autor'),
     path('autores/editar/<int:id>', views.editar_autor , name='editar_autor')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
