@@ -23,7 +23,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Autores</th>
                         <th scope="col">Descripcion</th>
@@ -38,7 +37,6 @@
                     {% for libro in libros %}
                     
                     <tr>
-                        <td>{{ libro.id }}</td>
                         <td>{{ libro.titulo }}</td>
                         <td>
                             {{ libro.autores_ids.all|join:", " }}
