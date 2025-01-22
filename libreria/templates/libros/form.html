@@ -1,0 +1,26 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %} 
+    {% for campo in formulario %}
+
+    <div class="mb-3">
+        <label for="" class="form-label">{{ campo.label }}</label>
+        <div class="mb-3">
+            {{ campo }}  
+        </div>
+       
+    </div>
+    
+    <div class="col-12 help-text"> {{campo.errors}} </div>
+    {% endfor %}
+    
+
+    <input name="" id="" class="btn btn-succes" type="submit" value="Enviar informacion">
+    <a
+    name=""
+    id=""
+    class="btn btn-primary"
+    href="{% url 'libros' %}"
+    role="button"
+    >Cancelar</a>
+    
+</form>
