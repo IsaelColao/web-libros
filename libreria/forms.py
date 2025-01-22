@@ -13,6 +13,7 @@ class LibroForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'autores_ids': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-group'}),
+            'descripcion': forms.Textarea(attrs={'rows': 2, 'cols': 30}),
         }
         
        
