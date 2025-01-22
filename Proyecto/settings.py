@@ -1,6 +1,10 @@
 from pathlib import Path
+import dj_database_url
+import environ
 import os
 
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-f0!9hjceoc%^w4$_to-(xblmx!0n0w8!r*3-+8-t&d6afjx2bn"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -66,14 +70,15 @@ WSGI_APPLICATION = "Proyecto.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django",
-        "USER": "postgres",
-        "PASSWORD": "barca1899",
-        "HOST": "localhost",
-        "PORT": "5432",
+        'NAME': os.environ.get("PGDATABASE"),
+        'USER': os.environ.get("PGUSER"),
+        'PASSWORD': os.environ.get("PGPASSWORD"),
+        'HOST': os.environ.get("PGHOST"),
+        'PORT': os.environ.get("PGPORT"),
     }
 }
 
+DATABASES["default"] = dj_database_url.config(conn_max_age=1600)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -97,13 +102,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-ES"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Havana"
 
 USE_I18N = True
 
 USE_TZ = True
+
+USE_L10N = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -118,3 +125,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "")
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DATE_FORMAT = "d/m/Y"
